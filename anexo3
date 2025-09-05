@@ -1,0 +1,26 @@
+// Definições dos pinos
+const int ldrPin = A0;     // Pino analógico onde o LDR está conectado
+const int ledPin = 9;      // LED conectado no pino 9 (ajuste se estiver em outro)
+
+// Limite para considerar ambiente escuro
+const int limiteEscuro = 500;  // Ajuste conforme o comportamento no Tinkercad
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600); // Inicia comunicação serial
+}
+
+void loop() {
+  int valorLDR = analogRead(ldrPin); // Lê o valor do sensor de luz
+  
+  Serial.print("Luminosidade: ");
+  Serial.println(valorLDR);  // Mostra o valor no monitor serial
+  
+  if (valorLDR < limiteEscuro) {
+    digitalWrite(ledPin, HIGH);  // Ambiente escuro → acende o LED
+  } else {
+    digitalWrite(ledPin, LOW);   // Ambiente claro → apaga o LED
+  }
+  
+  delay(500); // Pequeno atraso para estabilidade
+}
