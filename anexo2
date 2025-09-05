@@ -1,0 +1,24 @@
+// Pinos
+const int botao = 2;          // Botão no pino digital 2
+const int ledVermelho = 3;    // LED vermelho no pino digital 3
+const int ledVerde = 4;       // LED verde no pino digital 4
+
+void setup() {
+  pinMode(botao, INPUT);        // Botão como entrada
+  pinMode(ledVermelho, OUTPUT); // LED vermelho como saída
+  pinMode(ledVerde, OUTPUT);    // LED verde como saída
+}
+
+void loop() {
+  int estadoBotao = digitalRead(botao); // Lê o estado do botão
+  
+  if (estadoBotao == HIGH) {
+    // Botão pressionado → acende verde, apaga vermelho
+    digitalWrite(ledVerde, HIGH);
+    digitalWrite(ledVermelho, LOW);
+  } else {
+    // Botão solto → acende vermelho, apaga verde
+    digitalWrite(ledVerde, LOW);
+    digitalWrite(ledVermelho, HIGH);
+  }
+}
